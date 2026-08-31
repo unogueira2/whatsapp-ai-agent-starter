@@ -1,0 +1,19 @@
+{
+  "name": "whatsapp-ai-agent-starter",
+  "version": "1.0.0",
+  "description": "Production-shaped starter for a WhatsApp customer-service agent: WhatsApp Cloud API + Claude, one dependency.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node --check index.js && node --check memory.js && node --check prompt.js"
+  },
+  "keywords": ["whatsapp", "claude", "anthropic", "ai-agent", "chatbot", "whatsapp-cloud-api"],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
