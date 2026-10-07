@@ -10,6 +10,7 @@ import crypto from "node:crypto";
 import { readFileSync } from "node:fs";
 import { getHistory, addTurn } from "./memory.js";
 import { SYSTEM_PROMPT } from "./prompt.js";
+import { buildWhatsAppMessagesUrl } from "./graph.js";
 
 // ── .env loader ────────────────────────────────────────────
 // Deliberately hand-rolled instead of pulling in `dotenv`: one
@@ -40,7 +41,6 @@ const {
   APP_SECRET,
   ANTHROPIC_API_KEY,
   ANTHROPIC_MODEL = "claude-haiku-4-5-20251001",
-  GRAPH_VERSION = "v21.0",
   PORT = "3000",
 } = process.env;
 
@@ -57,7 +57,7 @@ if (!APP_SECRET) {
   console.warn("  Fine for local testing. Do not ship to production like this.");
 }
 
-const GRAPH_URL = `https://graph.facebook.com/${GRAPH_VERSION}/${PHONE_NUMBER_ID}/messages`;
+const GRAPH_URL = buildWhatsAppMessagesUrl();
 
 const app = express();
 // Keep the raw body around — signature verification needs the exact
@@ -144,6 +144,7 @@ async function sendWhatsApp(to, text) {
     body: JSON.stringify({
       messaging_product: "whatsapp",
       to,
+      recipient_type: "individual",
       type: "text",
       text: { body: text },
     }),
