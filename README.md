@@ -92,6 +92,25 @@ Syntax check without running:
 npm run check
 ```
 
+Credential-free tests (no Meta or Anthropic requests):
+
+```bash
+npm test
+```
+
+## WhatsApp Graph API version
+
+The default is **`v25.0`**, also set in `.env.example`. `GRAPH_VERSION` in the
+environment or `.env` overrides it; an existing `v21.0` pin must be removed or
+updated explicitly. This setting affects outbound requests, not the webhook
+subscription version configured in Meta's dashboard.
+
+The [2026-10-07 compatibility review](docs/graph-api-migration.md) compares the
+relevant changes from v21.0 and links the official v25.0 text/read-receipt
+examples. Local tests verify URL construction, overrides and simulated webhook
+requests through the actual server. They do **not** prove live Meta acceptance
+or delivery; no live-account test was performed.
+
 ---
 
 ## Making it yours

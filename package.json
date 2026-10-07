@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "check": "node --check index.js && node --check memory.js && node --check prompt.js"
+    "check": "node --check index.js && node --check graph.js && node --check memory.js && node --check prompt.js",
+    "test": "node --test"
   },
   "keywords": ["whatsapp", "claude", "anthropic", "ai-agent", "chatbot", "whatsapp-cloud-api"],
   "license": "MIT",
